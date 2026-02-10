@@ -29,8 +29,11 @@ echo [INFO] Starting development server...
 echo [INFO] Frontend: http://localhost:5173
 echo [INFO] Backend:  http://localhost:3001
 echo.
-echo Press Ctrl+C to stop the server
+echo Opening browser...
 echo.
+
+REM Open browser
+start http://localhost:5173
 
 REM Start development server
 call npm run dev
