@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 确保视频元素正确显示 */
+video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* 确保图片不会超出容器 */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}

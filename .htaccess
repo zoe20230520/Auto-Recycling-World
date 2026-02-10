@@ -1,0 +1,37 @@
+# Apache配置 - 反向代理Node.js后端
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  
+  # API请求代理到后端(3001端口)
+  RewriteRule ^api/(.*)$ http://localhost:3001/api/$1 [P,L]
+  
+  # 上传文件请求代理到后端
+  RewriteRule ^uploads/(.*)$ http://localhost:3001/uploads/$1 [P,L]
+  
+  # 其他请求返回前端
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^(.*)$ /dist/index.html [L]
+</IfModule>
+
+# 压缩静态文件
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript
+</IfModule>
+
+# 缓存配置
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType text/css "access plus 1 month"
+  ExpiresByType application/javascript "access plus 1 month"
+</IfModule>
+
+# 安全头部
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+  Header set X-Frame-Options "SAMEORIGIN"
+  Header set X-XSS-Protection "1; mode=block"
+</IfModule>
