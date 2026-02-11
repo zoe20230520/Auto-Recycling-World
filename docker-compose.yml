@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 
 services:
   webblog:
@@ -10,12 +10,6 @@ services:
       - ./uploads:/app/uploads
       - ./blog.db:/app/blog.db
     environment:
-      - NODE_ENV=production
-      - PORT=3001
+      - NODE_ENV: production
+      - PORT: 3001
     restart: unless-stopped
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:3001/api/articles"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-      start_period: 40s
